@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleLogin = () => {
     if (!inputUserName) {
-      alert("To view need Username");
+      alert("To explore, you need to provide Username");
       return;
     }
     toggleAuth(inputUserName);

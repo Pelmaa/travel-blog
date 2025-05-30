@@ -1,35 +1,49 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
-  const { loggedIn, toggleAuth } = useAuth();
+  const { loggedIn, toggleAuth, userName } = useAuth();
+  const [inputUserName, setInputUserName] = useState("");
   const navigate = useNavigate();
-  
+
   const handleLogin = () => {
     if (!loggedIn) {
-      toggleAuth(); // This will set loggedIn to true and update localStorage
-      navigate('/'); // Redirect to home after login
+      toggleAuth(inputUserName);
+      setInputUserName("");
+      navigate("/");
     }
   };
-  
-  return (
-    <div style={ {
-       justifyContent: "center",
-        padding: "5rem",
-        textAlign:"center"
-    }}>
 
+  return (
+    <div
+      style={{
+        justifyContent: "center",
+        padding: "5rem",
+        textAlign: "center",
+      }}
+    >
       <Navbar />
       <div>
-        <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>Welcome to the Travel Blog Home</h1>
-        
+        <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
+          Welcome to the Travel Blog Home
+        </h1>
+
         {!loggedIn ? (
-          <button onClick={handleLogin}>
-            Login to Explore More
-          </button>
+          <div>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              value={inputUserName}
+              onChange={(event) => setInputUserName(event.target.value)}
+              style={{ marginRight: "1rem", padding: "0.5rem" }}
+            />
+            <button onClick={handleLogin}>Login to Explore More</button>
+          </div>
         ) : (
           <div>
+            <h2 style={{ marginBottom: "2rem" }}>Welcome back, {userName}!</h2>
             <div>
               <h3>Featured Destinations</h3>
               <p>Discover our top travel recommendations</p>
@@ -43,8 +57,8 @@ const Home = () => {
               <p>Essential advice for your next trip</p>
             </div>
           </div>
-        )} 
-        </div>
+        )}
+      </div>
     </div>
   );
 };
