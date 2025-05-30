@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (!loggedIn) {
+    if (!loggedIn && inputUserName) {
       toggleAuth(inputUserName);
       setInputUserName("");
       navigate("/");

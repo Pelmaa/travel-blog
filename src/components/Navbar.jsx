@@ -1,12 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
   const { loggedIn, toggleAuth, userName } = useAuth();
-  const [inputUsername, setInputUsername] = useState("");
 
   // const handleAuth = () => {
   //   if (loggedIn) {
