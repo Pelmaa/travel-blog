@@ -19,13 +19,7 @@ const Navbar = () => {
   // };
   const handleAuth = () => {
     if (!loggedIn) {
-      if (inputUsername) {
-        toggleAuth(inputUsername); // for loggin
-        setInputUsername("");
-        navigate("/profile");
-      } else {
-        alert("Username is required");
-      }
+      navigate("/login");
     } else {
       toggleAuth(); // for logout
       navigate("/");
@@ -64,12 +58,6 @@ const Navbar = () => {
         {loggedIn && <Link to="/profile">Profile</Link>}
         {!loggedIn ? (
           <>
-            <input
-              type="text"
-              value={inputUsername}
-              onChange={(event) => setInputUsername(event.target.value)}
-              placeholder="Username"
-            />
             <button onClick={handleAuth}>Login</button>
           </>
         ) : (

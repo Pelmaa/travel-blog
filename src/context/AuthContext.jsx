@@ -15,18 +15,13 @@ export const AuthProvider = ({ children }) => {
 
   const toggleAuth = (user = null) => {
     if (!loggedIn) {
-      if (!user) {
-        alert("Username is required to log in.");
-        return;
-      }
-
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("username", user);
       setUsername(user);
       setLoggedIn(true);
     } else {
       localStorage.setItem("isLoggedIn", "false");
-      localStorage.removeItem("username");
+      localStorage.setItem("username", "");
       setUsername("");
       setLoggedIn(false);
     }
